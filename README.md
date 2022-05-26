@@ -1,2 +1,2 @@
 # musicplayer
-music player implementation using reactjs and springboot,java
+music player implementation using reactjs and springboot, java
