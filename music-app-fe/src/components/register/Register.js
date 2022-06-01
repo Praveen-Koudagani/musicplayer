@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 const Register = () => {
+
   return (
     <div>
+      
+    <div>
         <form>
-        <div class="container">
+        <div className="container">
         <label>Register</label>
         <br/>
         <input type="text" name="username" placeholder='enter username'></input>
@@ -17,10 +22,11 @@ const Register = () => {
         <br/>
         <input type="submit" name="submit" value="Register"></input>
         </div>
-        <div class="container signin">
-            <p>Already have an account? <a href="#">Log in</a>.</p>
+        <div className="container signin">
+            <p>Already have an account?<Link to="/Login">Login </Link></p>
         </div>
         </form>
+    </div>
     </div>
         
 
