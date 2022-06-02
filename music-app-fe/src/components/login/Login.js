@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate} from 'react-router-dom';
 import axios from "axios";
 import $ from "jquery";
-
+import auth from '../auth';
 
 const Login = () => {
   const navigate=useNavigate();
@@ -21,14 +21,22 @@ const Login = () => {
     const response = await axios.post(`http://localhost:8080/api/auth/login`,{
       'username': user.username,
       'password': user.password
-    }).then(console.log("hi"));
-    const clean = () => {
-        $('input[name="username"]').value="";
-        $('input[name="password"]').value="";
-    }
-    clean();
-    console.log(response);
-    navigate("/Home");
+    });
+    localStorage.setItem('AuthorizationToken',response.data["authenticationToken"]);
+    localStorage.setItem('username',response.data["username"]);
+    localStorage.setItem('expiresAt',response.data["expiresAt"]);
+    localStorage.setItem('refreshToken',response.data["refreshToken"]);
+
+    console.log(response.data);
+    // const clean = () => {
+    //     $('input[name="username"]').value="";
+    //     $('input[name="password"]').value="";
+    // }
+    // clean();
+    auth.login(()=>{
+      navigate("/Home");
+    })
+    
   }
 
 const handleLogin2=(event)=>{
