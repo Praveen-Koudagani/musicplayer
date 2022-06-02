@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import Register from '../register/Register';
 
 const Login = () => {
 const handleLogin=(event)=>{
