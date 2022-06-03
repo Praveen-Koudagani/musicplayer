@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { Link, useNavigate} from 'react-router-dom';
 import axios from "axios";
 import $ from "jquery";
+<<<<<<< HEAD
 import auth from '../auth';
+=======
+
+>>>>>>> 359ed358004b4e5ec78f67e700a11f1c1466a73a
 
 const Login = () => {
   const navigate=useNavigate();
