@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public class SongService {
-    final String SONG_DIR="E:\\music-app-songs\\";
+    final String SONG_DIR="E:\\java_files\\eclipse\\music-player\\musicplayer\\music-app-fe\\public\\songs\\";
     @Autowired
     private SongRepository songRepo;
 
@@ -25,8 +25,8 @@ public class SongService {
         String message="success fully uploaded";
         Song song=new Song();
         song.setSongName(originalFilename);
-        song.setSongUrl(SONG_DIR+originalFilename+".mp3");
-        File file = new File(SONG_DIR+originalFilename+".mp3");
+        song.setSongUrl(SONG_DIR+originalFilename);
+        File file = new File(SONG_DIR+originalFilename);
         try {
             byte[] buffer = new byte[inputStream.available()];
             inputStream.read(buffer);

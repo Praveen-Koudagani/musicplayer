@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { Link, useNavigate} from 'react-router-dom';
 import axios from "axios";
 import $ from "jquery";
-<<<<<<< HEAD
 import auth from '../auth';
-=======
-
->>>>>>> 359ed358004b4e5ec78f67e700a11f1c1466a73a
+import { ResponsiveAppBar } from '../home/SongsPage';
+import Navbar from '../home/Navbar';
 
 const Login = () => {
   const navigate=useNavigate();
@@ -50,7 +48,7 @@ const handleLogin2=(event)=>{
     <div>
     <div>
         <form onSubmit={handleLogin} method="PUT">
-        <div className=''>
+        <div className='fields'>
         <label>Login</label>
         <br/>
         <input type="text" name="username" placeholder='enter email'onChange={handleInputs}></input>

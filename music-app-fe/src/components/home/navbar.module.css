@@ -1,0 +1,123 @@
+
+.Navbar{
+    background-color: blueviolet;
+    width: 100%;
+    height: 75px;
+    display: flex;
+}
+button:hover{
+cursor: pointer;
+}
+.Navbar .leftSide{
+flex: 50%;
+display: flex;
+justify-content: left;
+align-items: center;
+}
+.Navbar .leftSide .links{
+max-height: 100px;
+}
+
+.Navbar .leftSide .links a{
+    color: white;
+    margin-left: 15px;
+    font-size: 25px;
+    text-decoration: none;
+}
+.Navbar .leftSide button{
+    display: none;
+    margin-left: 20px;
+}
+.Navbar .leftSide #hidden{
+    display: flex;
+}
+.Navbar .rightSide{
+    flex: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 25px;
+}
+.rightSide input{
+    width: 200px;
+    height: 30px;
+    border: darkviolet;
+    border-radius: 4px;
+    font-size: 20px;
+    padding-left: 15px;
+    color: black;
+}
+.rightSide button{
+    height: 32px;
+    width: 60px;
+    font-size: 16px;
+    margin-left: 8px;
+}
+.whitetext{
+    color: white;
+    background-color: red;
+    margin-left: 20px;
+    border-width: 0;
+    border-radius: 7px;
+}
+
+@media screen and (max-width:850px) {
+    .Navbar .leftSide .links a{
+        font-size: 20px;
+    }
+    
+}
+@media screen and (max-width:750px) {
+    .Navbar .leftSide .links a{
+        font-size: 16px;
+    }
+    .rightSide input{
+        height: 25px;
+        font-size: 20px;
+    }
+    .rightSide button:first{
+        
+        color: black
+    }
+    .rightSide button{
+        height: 27px;
+        font-size: 16px;
+    }
+    
+}
+
+@media screen and (max-width:650px) {
+    
+    .hide {
+        display: none;
+    }
+    .Navbar .leftSide button{
+        display: flex;
+        margin-left: 20px;
+    }
+    .Navbar .leftSide #hidden{
+        position: absolute;
+        left: 0px;
+        top: 70px;
+        height: 230px;
+        width: 100%;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        
+    }
+    .Navbar .leftSide #hidden a{
+      margin: 5px;
+      font-size: 14px;
+    }
+    .rightSide button:first{
+        
+        color: black
+    }
+    .rightSide button{
+        height: 27px;
+        font-size: 16px;
+    }
+   
+}

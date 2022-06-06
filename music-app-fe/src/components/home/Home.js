@@ -1,22 +1,24 @@
-import { Label } from '@mui/icons-material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import ReactAudioPlayer from 'react-audio-player';
+import { Outlet, Route, Router, Routes, useNavigate } from 'react-router-dom';
 import auth from '../auth';
+import Player from './MusicPlayer';
+import Navbar from './Navbar';
+import { ResponsiveAppBar, SongsPage } from './SongsPage';
+import PlayCircleSharpIcon from '@mui/icons-material/PlayCircleSharp';
+import StopCircleSharpIcon from '@mui/icons-material/StopCircleSharp';
 
 const Home = () => {
   const navigate=useNavigate();
- const handleLogout=(event)=>{
-localStorage.clear();
-auth.logout();
-navigate("/Login");
-  }
+
 
   const [songsList, setSongsList] = useState([]);
   const getSongsList = () => {
     axios.get("http://localhost:8080/api/music/getSongs").then((res) => {
       const Songs = res.data;
       setSongsList(Songs);
+      console.log(Songs);
     });
   };
   useEffect(() => {
@@ -28,24 +30,22 @@ navigate("/Login");
   }, []);
 
 const data=songsList.map((song)=>{
-  console.log(song["songName"]);
-  return <div><p>{song["songName"]}</p>
-  <br/>
-  <audio controls autoPlay>
-  <source src="./Pareshanayya.mp3" type="audio/mpeg"/>
-Your browser does not support the audio element.
-</audio>
+  song["playing"]=false;
+  console.log(song["playing"]);
+
+  return <div key={song["songName"]}><p>{song["songName"]}<span><button></button></span></p>
+  {/* <Player url={"songs/"+song["songName"]}/> */}
   </div>;
 });
 
   return (
     <div>
       <div>
-        <label>welcome to dashboard</label>
-        <input type="button" name="logout" value="Logout" onClick={handleLogout}></input>
+        <Navbar/>
+        <Outlet/>
         <div>{data}</div>
-        
       </div>
+      
     </div>
   );
 }
