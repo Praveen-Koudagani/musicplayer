@@ -1,14 +1,12 @@
 import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
-import { Outlet, Route, Router, Routes, useNavigate } from 'react-router-dom';
+import { Outlet,useNavigate } from 'react-router-dom';
 import auth from '../auth';
 import Player from './MusicPlayer';
 import Navbar from './Navbar';
-import { ResponsiveAppBar, SongsPage } from './SongsPage';
 import PlayCircleSharpIcon from '@mui/icons-material/PlayCircleSharp';
 import StopCircleSharpIcon from '@mui/icons-material/StopCircleSharp';
-import { Favorite } from '@mui/icons-material';
 
 const Context=createContext();
 const Home = () => {
@@ -17,6 +15,7 @@ let data;
 let songsdir="/songs/";
   const [songsList, setSongsList] = useState({});
   const [csong,setCsong]=useState();
+  const [searchWord,setSearchWord]=useState("");
   
  
   const getSongsList = () => {
@@ -62,7 +61,7 @@ let songsdir="/songs/";
     songsList[song[0]]["isFav"]=!songsList[song[0]]["isFav"];
     setSongsList({...songsList});
   };
-  
+
   const toggleSong=(song)=>{
     if(csong && csong!==song[0] && songsList[csong]["playing"]){
       songsList[csong]["playing"]=!songsList[csong]["playing"];}
@@ -83,9 +82,11 @@ return <audio controls src={process.env.PUBLIC_URL+songsdir+csong} type="audio/m
 
   return (
     <div>
-        <Navbar/>
+        <Navbar searchWord={searchWord} setSearchWord={setSearchWord}/>
         <div style={{paddingTop:70,position:"relative"}}>
-        <Context.Provider value={{"songsList": songsList, "data" : data, "toggleSong" : toggleSong,"toggleFavourite":toggleFavourite} }>
+        <Context.Provider value={{"songsList": songsList, "data" : data, "toggleSong" : toggleSong,
+        "toggleFavourite":toggleFavourite,
+        "searchWord":searchWord} }>
           <Outlet/>
         </Context.Provider>
         </div>

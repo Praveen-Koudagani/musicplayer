@@ -35,7 +35,7 @@ const Favourites = () => {
   }, [setSongsList]);
 
 data=Object.entries(songsList).map(song=>{
-  if(song[1].isFav){
+  if(song[1].isFav && (song[0].toLowerCase().includes(context["searchWord"].toLowerCase()) || context["searchWord"]==="")){
       return <div key={song[0]}><p>{song[1].songName}<span>{
         songsList[song[0]]["playing"] ?
         <button onClick={()=>{context["toggleSong"](song)}}>
