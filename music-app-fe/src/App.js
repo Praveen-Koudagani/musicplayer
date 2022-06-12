@@ -15,8 +15,9 @@ function App() {
           <Route exact path="/" element={<Register/>} />
           <Route exact path="/Login" element={<Login/>} />
           <Route exact path="/Home" element={<ProtectedRoute><Home/></ProtectedRoute>} >
-          <Route exact path="SongsPage" element={<SongsPage/>}/>
-          <Route exact path="Favourites" element={<Favourites/>}/></Route>
+             <Route exact path="SongsPage" element={<SongsPage/>}/>
+             <Route exact path="Favourites" element={<Favourites/>}/>
+          </Route>
           <Route path="*" component={() => "404 NOT FOUND"} />
         </Routes>
       </Router>

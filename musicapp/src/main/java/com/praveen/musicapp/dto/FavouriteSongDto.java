@@ -1,0 +1,13 @@
+package com.praveen.musicapp.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class FavouriteSongDto {
+    String username;
+    String songName;
+}

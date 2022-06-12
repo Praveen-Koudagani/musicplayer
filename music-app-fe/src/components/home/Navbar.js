@@ -1,6 +1,6 @@
 import { Menu, Search } from '@mui/icons-material';
 import React, { useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import auth from '../auth';
 import styles from './navbar.module.css';
 
@@ -18,16 +18,16 @@ navigate("/Login");
         <div className={styles.leftSide}>
             <div className={[styles.links,styles.hide].join(" ")} id={showLinks ? styles.hidden:""}>
               
-                <a href="/Home">Home</a>
-                <a href="/Home/SongsPage">Songs</a>
-                <a href="/Home/favourites">Favourites</a>
+                <Link className={styles.Link} to="/Home">Home</Link>
+                <Link className={styles.Link} to="/Home/SongsPage">Songs</Link>
+                <Link className={styles.Link} to="/Home/favourites">Favourites</Link>
               
         </div>
         <button className={styles.visible} onClick={()=>setShowLinks(!showLinks)}><Menu/></button>
         </div>
         <div className={styles.rightSide}>
-        <input type="text" placeholder='search...'></input>
-        <button><Search/></button>
+        <input type="text" placeholder='search...' name="searchdata"></input>
+        <button o><Search/></button>
         <button className={styles.whitetext} onClick={handleLogout}>Logout</button>
         </div>
     </div>
