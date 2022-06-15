@@ -1,36 +1,70 @@
-// import React, { useState, useEffect } from "react";
+import { PauseCircle, PlayCircleSharp, VolumeMuteSharp, VolumeUpSharp } from '@mui/icons-material';
+import React, { useEffect, useRef, useState } from 'react';
+import styles from './MusicPlayer.module.css';
 
-// const useAudio = url => {
-//   const [audio] = useState(new Audio(url));
-//   const [playing, setPlaying] = useState(false);
+const MusicPlayer = (props) => {
+    const playerButton =useRef();
+      const audio = props.audioref;
+      const timeline =useRef();
+      const soundButton = useRef();
+      const playIcon =<PlayCircleSharp/>;
+      const pauseIcon =<PauseCircle/>;
+      const soundIcon = <VolumeUpSharp/>;
+      const muteIcon = <VolumeMuteSharp/>;
+      const [muteOrSound,setMuteOrSound]=useState(soundIcon);
 
-//   const toggle = () => setPlaying(!playing);
+const toggleAudio =()=> {
+  props.toggleSong([props.song]);
+};
 
-//   useEffect(() => {
-//       playing ? audio.play() : audio.pause();
-//     },
-//     [playing]
-//   );
+const changeTimelinePosition= ()=> {
+  const percentagePosition = (100*audio.current.currentTime) / audio.current.duration;
+  timeline.current.style.backgroundSize = `${percentagePosition}% 100%`;
+  timeline.current.value = percentagePosition;
+};
+useEffect(()=>{
+    audio.current.ontimeupdate = changeTimelinePosition;
+    
+},[]);
 
-//   useEffect(() => {
-//     audio.addEventListener('ended', () => setPlaying(false));
-//     return () => {
-//       audio.removeEventListener('ended', () => setPlaying(false));
-//     };
-//   }, []);
 
-//   return [playing, toggle];
-// };
 
-// const Player = ({ url }) => {
-//   const [playing, toggle] = useAudio(url);
-//   console.log(url);
+const audioEnded= ()=> {
+  props.playing["setPlaying"](false);
+  props.changeCurrentSongStatus();
+};
 
-//   return (
-//     <div>
-//       <button onClick={toggle}>{playing ? "Pause" : "Play"}</button>
-//     </div>
-//   );
-// };
 
-// export default Player;
+
+const changeSeek= ()=> {
+  const time = (timeline.current.value * audio.current.duration) / 100;
+  audio.current.currentTime = time;
+};
+
+
+const toggleSound= ()=> {
+  audio.current.muted = !audio.current.muted;
+  setMuteOrSound(audio.current.muted ? muteIcon : soundIcon);
+}
+
+  return (
+    <div>
+
+<div className={styles["audio-player"]}>
+  <audio ref={audio} src={process.env.PUBLIC_URL+"/songs/"+props.song} onEnded ={ audioEnded}></audio>
+  <div className={styles["controls"]}>
+    <button ref={playerButton} className={styles["player-button"]} onClick={toggleAudio} >
+      {props.playing["playing"]?pauseIcon:playIcon}
+    </button>
+    <input type="range" ref={timeline} className={styles["timeline"]} max="100" value="0" onChange={changeSeek}/>
+    <button ref={soundButton} className={styles["sound-button"]} onClick={toggleSound} >
+     {muteOrSound}
+    </button>
+  </div>
+</div>
+
+    </div>
+  )
+}
+
+export default MusicPlayer

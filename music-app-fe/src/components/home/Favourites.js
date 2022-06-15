@@ -13,11 +13,11 @@ const Favourites = () => {
   const getFavourites=()=>{
     axios.post("http://localhost:8080/api/music/getFavouriteSongs",{"username":localStorage.getItem('username')}).then((res) => {
       const Songs = res.data;
-      
+      //console.log(context);
       Songs.forEach(songname => {
       
        const song=context["songsList"][songname];
-       
+       console.log(songname);
         const newsong= {};
         newsong[song["songName"]]=song;
      
@@ -25,11 +25,10 @@ const Favourites = () => {
         
       });
       setSongsList({...songsList});
-      console.log(songsList);
       
-
     });
   };
+
   useEffect(() => {
     getFavourites();
   }, [setSongsList]);

@@ -11,7 +11,7 @@ export const SongsPage = () => {
 
  let data=Object.entries(context["songsList"]).map(song=>{
   
-    console.log("hi");
+    //console.log("hi");
   if(song[0].toLowerCase().includes(context["searchWord"].toLowerCase()) || context["searchWord"]==="" ){
     return <div key={song[0]}><p>{song[1].songName}<span>{
       context["songsList"][song[0]]["playing"] ?
